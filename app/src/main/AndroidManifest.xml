@@ -14,7 +14,29 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            // This allows your app to directly receive incoming SMS messages.
+            <receiver android:name=".SmsReceiver"
+                android:permission="android.permission.BROADCAST_SMS">
+
+                <intent-filter>
+                    <action android:name="android.provider.Telephony.SMS_DELIVER" /> // or SMS_RECEIVED
+                </intent-filter>
+
+                /*
+                only the app that receives the SMS_DELIVER_ACTION broadcast
+                (the user-specified default SMS app) is able to write to the SMS Provider
+                */
+
+            </receiver>
+
         </activity>
     </application>
+
+    <uses-feature
+
+        android:name="android.hardware.telephony"
+
+        />
 
 </manifest>
